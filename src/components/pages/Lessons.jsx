@@ -42,7 +42,7 @@ export default function Lessons() {
             <Grid item xs={12} sm={12} md={6}>
               <Box>
 
-                <Box sx={{ height: { xs: '100%', sm: '300px', md: '300px' } }}>
+                <Box sx={{ height: { xs: '100%', sm: '300px', md: '280px' } }}>
                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Uo9c0-NcfCA?si=B_aAqmtkSXT2BYkd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen ></iframe>
                 </Box>
                 <section
@@ -69,7 +69,7 @@ export default function Lessons() {
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
               <Box>
-                <Box sx={{ height: { xs: '100%', sm: '200px', md: '300px' } }}>
+                <Box sx={{ height: { xs: '100%', sm: '200px', md: '280px' } }}>
                   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/yI_1OMQ9gak?si=4Xa3QhowpLnV7-L4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </Box>
                 <section
