@@ -150,10 +150,10 @@ function Navbar(props) {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}><Typography component={Link}>Футажи</Typography></MenuItem>
-            <MenuItem onClick={handleClose}><Typography component={Link}>Звуки</Typography></MenuItem>
-            <MenuItem onClick={handleClose}><Typography component={Link}>LUTs</Typography></MenuItem>
-            <MenuItem onClick={handleClose}><Typography component={Link}>FULL PACK</Typography></MenuItem>
+            <MenuItem onClick={handleClose}><Nav to='/footage'>Футажи</Nav></MenuItem>
+            <MenuItem onClick={handleClose}><Nav to='/zvuk'>Звуки</Nav></MenuItem>
+            <MenuItem onClick={handleClose}><Nav to='/luts'>LUTs</Nav></MenuItem>
+            <MenuItem onClick={handleClose}><Nav to='/fullpack'>FULL PACK</Nav></MenuItem>
           </Menu>
 
           <IconButton
