@@ -20,6 +20,12 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 
+const MButton = styled(NavLink)`
+  padding: 20px;
+  text-decoration: none;
+  color: #2b2b2b;
+`;
+
 
 const theme = createTheme({
   palette: {
@@ -33,11 +39,23 @@ const Nav = styled(NavLink)({
   color: theme.palette.primary.main,
   textDecoration: 'none'
 });
+
 const drawerWidth = 240;
-const navItems = ['Уроки', 'Контакты'];
+
 
 function Navbar(props) {
   const { window } = props;
+  const container = window !== undefined ? () => window().document.body : undefined;
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -57,37 +75,72 @@ function Navbar(props) {
         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 320 },
       }}
     >
-      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Box sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
         <Divider />
         <List sx={{ pt: 5 }}>
           <Box sx={{ display: 'flex', textAlign: 'center', flexDirection: 'column' }}>
-            <Button sx={{ color: theme.palette.primary.main }}>Наборы для монтажа</Button>
-            <Button sx={{ color: theme.palette.primary.main }}>Готова</Button>
+            <MButton to='/' sx={{ color: theme.palette.primary.main }} onClick={handleDrawerToggle}>Главная</MButton>
+            <MButton to='/lessons' sx={{ color: theme.palette.primary.main }} onClick={ handleDrawerToggle}>Уроки</MButton>
+            <MButton to='/contacts' sx={{ color: theme.palette.primary.main }} onClick={ handleDrawerToggle}>Контакты</MButton>
+            <MButton
+              sx={{ color: theme.palette.primary.main }}
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+            >
+              <Nav>Наборы для монтажа</Nav>
+            </MButton>
+            <Menu
+              sx={{
+                '& .MuiPaper-root': {
+                  paddingRight: '70px',
+                  paddingLeft: '10px',
+                  background: '#f7f7f7',
+                  borderRadius: '8px',
+                  boxShadow: '0 5px 20px rgba(0,0,0,0.15)',
+                },
+                '& .MuiTypography-root': {
+                  textDecoration: 'none',
+                  color: theme.palette.primary.main
+                },
+                '& .MuiTypography-root::after': {
+                  content: '""',
+                  display: 'block',
+                  visibility: 'hidden',
+                  position: 'absolute',
+                  right: 0,
+                  bottom: '-2px',
+                  left: 0,
+                  height: '1px',
+                  transform: 'scaleX(0) translate(0, 0)',
+                  transition: 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)',
+                  backgroundColor: '#000',
+                  borderBottom: '1px solid #000'
+                },
+              }}
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem onClick={() => { handleClose(); handleDrawerToggle(); }}><Nav to='/footage'>Футажи</Nav></MenuItem>
+              <MenuItem onClick={() => { handleClose(); handleDrawerToggle(); }}><Nav to='/zvuk'>Звуки</Nav></MenuItem>
+              <MenuItem onClick={() => { handleClose(); handleDrawerToggle(); }}><Nav to='/luts'>LUTs</Nav></MenuItem>
+              <MenuItem onClick={() => { handleClose(); handleDrawerToggle(); }}><Nav to='/'>FULL PACK</Nav></MenuItem>
+            </Menu>
           </Box>
-          {navItems.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: 'center', color: theme.palette.primary.main }}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-
         </List>
+
       </Box>
     </Drawer>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
 
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -100,7 +153,7 @@ function Navbar(props) {
           <Box component='div' sx={{ display: { xs: 'none', sm: 'block' } }}>
             <Button sx={{ color: theme.palette.primary.main }}>
               <Nav to="/">Главная</Nav>
-              </Button>
+            </Button>
             <Button
               sx={{ color: theme.palette.primary.main }}
               id="basic-button"
@@ -115,17 +168,18 @@ function Navbar(props) {
 
           <Menu
             sx={{
-             
+
               '& .MuiPaper-root': {
                 paddingRight: '70px',
                 paddingLeft: '10px',
                 background: '#f7f7f7',
                 borderRadius: '8px',
                 boxShadow: '0 5px 20px rgba(0,0,0,0.15)',
+                left: '72px',
               },
-              '& .MuiTypography-root' : {
-                 textDecoration: 'none',
-                 color: theme.palette.primary.main
+              '& .MuiTypography-root': {
+                textDecoration: 'none',
+                color: theme.palette.primary.main
               },
               '& .MuiTypography-root::after': {
                 content: '""',
@@ -153,7 +207,7 @@ function Navbar(props) {
             <MenuItem onClick={handleClose}><Nav to='/footage'>Футажи</Nav></MenuItem>
             <MenuItem onClick={handleClose}><Nav to='/zvuk'>Звуки</Nav></MenuItem>
             <MenuItem onClick={handleClose}><Nav to='/luts'>LUTs</Nav></MenuItem>
-            <MenuItem onClick={handleClose}><Nav to='/fullpack'>FULL PACK</Nav></MenuItem>
+            <MenuItem onClick={handleClose}><Nav to='/'>FULL PACK</Nav></MenuItem>
           </Menu>
 
           <IconButton
@@ -165,14 +219,14 @@ function Navbar(props) {
             <MenuIcon />
           </IconButton>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-        
-              <Button sx={{ color: theme.palette.primary.main }}>
-               <Nav to='/lessons'> Уроки</Nav>
-              </Button>
-              
-              <Button sx={{ color: theme.palette.primary.main }}>
+
+            <Button sx={{ color: theme.palette.primary.main }}>
+              <Nav to='/lessons'> Уроки</Nav>
+            </Button>
+
+            <Button sx={{ color: theme.palette.primary.main }}>
               <Nav to='contacts'> Контакты</Nav>
-              </Button>
+            </Button>
 
           </Box>
         </Toolbar>

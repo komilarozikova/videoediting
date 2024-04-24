@@ -1,4 +1,4 @@
-import { Box, Grid, Paper } from '@mui/material'
+import { Box, Grid, Paper, Skeleton } from '@mui/material'
 import React from 'react'
 import styled from 'styled-components';
 
@@ -8,7 +8,8 @@ const Item = styled(Paper)(() => ({
 }));
 
 
-export default function Lessons() {
+export default function Lessons(props) {
+  const { loading = false } = props;
   return (
     <div className='container' style={{ width: '92%' }}>
       <div className="col-sm-12">
@@ -43,7 +44,15 @@ export default function Lessons() {
               <Box>
 
                 <Box sx={{ height: { xs: '100%', sm: '300px', md: '280px' } }}>
-                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Uo9c0-NcfCA?si=B_aAqmtkSXT2BYkd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen ></iframe>
+               
+               {loading ? (
+                <Skeleton height='200px'>
+                  <iframe></iframe>
+                </Skeleton>
+               ) : (
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Uo9c0-NcfCA?si=B_aAqmtkSXT2BYkd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen ></iframe>
+               )}
+                
                 </Box>
                 <section
                   className=" my-4 section-container text-section -default wysiwyg"
@@ -70,7 +79,14 @@ export default function Lessons() {
             <Grid item xs={12} sm={12} md={6}>
               <Box>
                 <Box sx={{ height: { xs: '100%', sm: '200px', md: '280px' } }}>
-                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/yI_1OMQ9gak?si=4Xa3QhowpLnV7-L4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                {loading ? (
+                <Skeleton height='200px'>
+                  <iframe></iframe>
+                </Skeleton>
+               ) : (
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/yI_1OMQ9gak?si=4Xa3QhowpLnV7-L4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               )}
+                
                 </Box>
                 <section
                   className=" my-4 section-container text-section -default wysiwyg"
@@ -115,7 +131,14 @@ export default function Lessons() {
             <Grid item xs={12} sm={12} md={4}>
               <Box>
                 <Box sx={{ height: { xs: '100%', sm: '200px', md: '250px' } }}>
+                {loading ? (
+                <Skeleton height='200px'>
+                  <iframe></iframe>
+                </Skeleton>
+               ) : (
                 <iframe  width="100%" height="100%"  src="https://www.youtube.com/embed/HmrjdP_z6RM?si=VrXVNU6mc_jJhRz5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               )}
+             
                 </Box>
 
                 <section
@@ -141,7 +164,15 @@ export default function Lessons() {
             <Grid item xs={12} sm={12} md={4}>
               <Box>
                 <Box sx={{ height: { xs: '100%', sm: '200px', md: '250px' } }}>
+                {loading ? (
+                <Skeleton height='200px'>
+                  <iframe></iframe>
+                </Skeleton>
+               ) : (
                 <iframe width="100%" height="100%"  src="https://www.youtube.com/embed/KYr_r8kUMvs?si=onwTmfmhw9QN5dEL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               )}
+             
+              
                 </Box>
 
                 <section
@@ -167,8 +198,16 @@ export default function Lessons() {
             <Grid item xs={12} sm={12} md={4}>
               <Box>
                 <Box sx={{ height: { xs: '100%', sm: '200px', md: '250px' } }}>
-
+                {loading ? (
+                <Skeleton height='200px'>
+                  <iframe></iframe>
+                </Skeleton>
+               ) : (
                 <iframe width="100%" height="100%"  src="https://www.youtube.com/embed/xkkP-iR7y6k?si=vHXzmVWxW0E_8Udn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               )}
+             
+              
+              
                 </Box>
                 <section
                   className="my-4 section-container text-section -default wysiwyg"
